@@ -18,11 +18,12 @@ pipeline {
 				echo 'Finalizado los tests '
             }
         }
-        stage('Deploy') {
+        stage('Sonarqube Analisis') {
             steps {
-                echo 'Desplegando el area de desarrollo'
-                sh 'mvn install'
-                sh 'mvn spring-boot:run'
+                sh ' mvn sonar:sonar \
+                    -Dsonar.projectKey=PtoyectoFinal \
+                    -Dsonar.host.url=http://sonarqube:9000 \
+                    -Dsonar.login=7519d0a385eef0af39282866a4f67747bf47c5fb'
             }
         }
     }
